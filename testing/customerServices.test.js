@@ -38,7 +38,7 @@ const testCustomer = {
   vip: true,
 };
 
-describe("Unit testing", () => {
+describe("Services controllers testing", () => {
   test("Customers", async () => {
     const response = await customersService();
 

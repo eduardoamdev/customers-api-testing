@@ -52,7 +52,7 @@ const testCustomer = {
 
 const idParam = { id: "0" };
 
-describe("Controllers testing", () => {
+describe("Customer controllers testing", () => {
   test("Customers", async () => {
     const response = await customersController(
       emptyRequest,

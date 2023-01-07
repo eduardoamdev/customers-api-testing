@@ -5,7 +5,7 @@ const testCustomer = {
   vip: true,
 };
 
-describe("Utils", () => {
+describe("Error management checker", () => {
   test("Input checker", () => {
     const response = inputChecker(testCustomer);
 
