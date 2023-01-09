@@ -59,7 +59,7 @@ describe("Customer controllers testing", () => {
       successfulResponse
     );
 
-    expect(response).toEqual(undefined);
+    expect(response).toBeUndefined();
   });
 
   test("Customer", async () => {
@@ -68,7 +68,7 @@ describe("Customer controllers testing", () => {
       successfulResponse
     );
 
-    expect(response).toEqual(undefined);
+    expect(response).toBeUndefined();
   });
 
   test("Create", async () => {
@@ -77,7 +77,7 @@ describe("Customer controllers testing", () => {
       successfulResponse
     );
 
-    expect(response).toEqual(undefined);
+    expect(response).toBeUndefined();
   });
 
   test("Update", async () => {
@@ -89,7 +89,7 @@ describe("Customer controllers testing", () => {
       successfulResponse
     );
 
-    expect(response).toEqual(undefined);
+    expect(response).toBeUndefined();
   });
 
   test("Delete", async () => {
@@ -98,6 +98,6 @@ describe("Customer controllers testing", () => {
       successfulResponse
     );
 
-    expect(response).toEqual(undefined);
+    expect(response).toBeUndefined();
   });
 });
