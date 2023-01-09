@@ -35,7 +35,7 @@ const {
 
 const emptyRequest = {};
 
-const successfulResponse = {
+const controllerResponse = {
   status: (responseStatus) => {
     return {
       json: (jsonResponse) => {
@@ -56,7 +56,7 @@ describe("Customer controllers testing", () => {
   test("Customers", async () => {
     const response = await customersController(
       emptyRequest,
-      successfulResponse
+      controllerResponse
     );
 
     expect(response).toBeUndefined();
@@ -65,7 +65,7 @@ describe("Customer controllers testing", () => {
   test("Customer", async () => {
     const response = await customerController(
       { params: idParam },
-      successfulResponse
+      controllerResponse
     );
 
     expect(response).toBeUndefined();
@@ -74,7 +74,7 @@ describe("Customer controllers testing", () => {
   test("Create", async () => {
     const response = await createController(
       { body: testCustomer },
-      successfulResponse
+      controllerResponse
     );
 
     expect(response).toBeUndefined();
@@ -86,7 +86,7 @@ describe("Customer controllers testing", () => {
         params: idParam,
         body: testCustomer,
       },
-      successfulResponse
+      controllerResponse
     );
 
     expect(response).toBeUndefined();
@@ -95,7 +95,7 @@ describe("Customer controllers testing", () => {
   test("Delete", async () => {
     const response = await deleteController(
       { params: idParam },
-      successfulResponse
+      controllerResponse
     );
 
     expect(response).toBeUndefined();
