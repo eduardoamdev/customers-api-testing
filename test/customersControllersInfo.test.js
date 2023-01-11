@@ -33,26 +33,14 @@ const {
   deleteController,
 } = require("../controllers/customersControllers");
 
-const emptyRequest = {};
+const {
+  emptyRequest,
+  controllerResponse,
+  testCustomer,
+  idParam,
+} = require("./testingRequestElements");
 
-const controllerResponse = {
-  status: (responseStatus) => {
-    return {
-      json: (jsonResponse) => {
-        return { status: responseStatus, jsonResponse };
-      },
-    };
-  },
-};
-
-const testCustomer = {
-  name: "Luis",
-  vip: true,
-};
-
-const idParam = { id: "0" };
-
-describe("Customer controllers testing", () => {
+describe("Customer controllers info testing", () => {
   test("Customers", async () => {
     const response = await customersController(
       emptyRequest,
