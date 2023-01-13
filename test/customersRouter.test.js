@@ -10,24 +10,26 @@ jest.mock("../controllers/customersControllers", () => {
   };
 });
 
-jest.mock("express", () => ({
-  Router: () => {
-    return {
-      get: () => {
-        return "get";
-      },
-      post: () => {
-        return "post";
-      },
-      put: () => {
-        return "put";
-      },
-      delete: () => {
-        return "delete";
-      },
-    };
-  },
-}));
+jest.mock("express", () => {
+  return {
+    Router: () => {
+      return {
+        get: () => {
+          return "get";
+        },
+        post: () => {
+          return "post";
+        },
+        put: () => {
+          return "put";
+        },
+        delete: () => {
+          return "delete";
+        },
+      };
+    },
+  };
+});
 
 describe("Customers router test", () => {
   test("Get", () => {
