@@ -146,7 +146,7 @@ const customersService = async () => {
 };
 ```
 
-Para ejecutar un test unitario a este código lo más aconsejable es mockear getcustomers y para hacerlo construiríamos nuestro test de la siguiente forma:
+Para ejecutar un test unitario a este código lo más aconsejable es mockear getcustomers. Una de las posibilidades que tenemos para hacerlo es la siguiente:
 
 ```js
 jest.mock("../database/queries", () => {
