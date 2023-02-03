@@ -31,12 +31,7 @@ const {
   deleteService,
 } = require("../services/customersServices");
 
-const customerId = "0";
-
-const testCustomer = {
-  name: "Luis",
-  vip: true,
-};
+const { testCustomer, customerId } = require("./testingUtils");
 
 describe("Services controllers testing", () => {
   test("Customers", async () => {

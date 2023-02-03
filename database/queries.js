@@ -17,7 +17,6 @@ const updateCustomer = async (id, info) => {
 };
 
 const deleteCustomer = async (id) => {
-  console.log(id);
   return await Customer.findByIdAndDelete(id);
 };
 

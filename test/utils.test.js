@@ -1,9 +1,6 @@
 const { inputChecker, outputChecker } = require("../utils/errorManagement");
 
-const testCustomer = {
-  name: "Luis",
-  vip: true,
-};
+const { testCustomer } = require("./testingUtils");
 
 describe("Error management checker", () => {
   test("Input checker ok", () => {
