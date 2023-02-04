@@ -23,11 +23,11 @@ const {
   controllerResponse,
   testCustomer,
   idParam,
-} = require("./testingUtils");
+} = require("./testing.utils");
 
 describe("Customer controllers info testing", () => {
   test("Customers", async () => {
-    customersService.mockReturnValueOnce([testCustomer]);
+    customersService.mockResolvedValue([testCustomer]);
 
     const response = await customersController(
       emptyRequest,
@@ -51,7 +51,7 @@ describe("Customer controllers info testing", () => {
   });
 
   test("Customer", async () => {
-    customerService.mockReturnValueOnce(testCustomer);
+    customerService.mockResolvedValue(testCustomer);
 
     const response = await customerController(
       { params: idParam },
@@ -75,7 +75,7 @@ describe("Customer controllers info testing", () => {
   });
 
   test("Create", async () => {
-    createService.mockReturnValueOnce(testCustomer);
+    createService.mockResolvedValue(testCustomer);
 
     const response = await createController(
       { body: testCustomer },
@@ -99,7 +99,7 @@ describe("Customer controllers info testing", () => {
   });
 
   test("Update", async () => {
-    updateService.mockReturnValueOnce(testCustomer);
+    updateService.mockResolvedValue(testCustomer);
 
     const response = await updateController(
       {
@@ -129,7 +129,7 @@ describe("Customer controllers info testing", () => {
   });
 
   test("Delete", async () => {
-    deleteService.mockReturnValueOnce(testCustomer);
+    deleteService.mockResolvedValue(testCustomer);
 
     const response = await deleteController(
       { params: idParam },
