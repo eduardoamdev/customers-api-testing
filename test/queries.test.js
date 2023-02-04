@@ -19,6 +19,7 @@ describe("Database queries test", () => {
     const response = await getCustomers();
 
     expect(response[0].name).toEqual("Luis");
+    expect(response[0].vip).toEqual(true);
   });
 
   test("Get customer", async () => {
@@ -27,6 +28,7 @@ describe("Database queries test", () => {
     const response = await getCustomer();
 
     expect(response.name).toEqual("Luis");
+    expect(response.vip).toEqual(true);
   });
 
   test("Create customer", async () => {
@@ -35,6 +37,7 @@ describe("Database queries test", () => {
     const response = await createCustomer();
 
     expect(response.name).toEqual("Luis");
+    expect(response.vip).toEqual(true);
   });
 
   test("Update customer", async () => {
@@ -43,6 +46,7 @@ describe("Database queries test", () => {
     const response = await updateCustomer();
 
     expect(response.name).toEqual("Luis");
+    expect(response.vip).toEqual(true);
   });
 
   test("Delete customer", async () => {
@@ -51,5 +55,6 @@ describe("Database queries test", () => {
     const response = await deleteCustomer();
 
     expect(response.name).toEqual("Luis");
+    expect(response.vip).toEqual(true);
   });
 });

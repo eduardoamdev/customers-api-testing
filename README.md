@@ -130,13 +130,15 @@ const { suma } = require("./suma.js");
 
 ### Mocks:
 
-El concepto de mock es, básicamente, la sustitución de una pieza de código por otra que nosotros decidamos. Esto lo hacemos con el objetivo de testear únicamente el código de la funcionalidad y no incluir en el mismo llamadas a otras apis, a otras a funciones o consultas a una base de datos.
+El concepto de mock es, básicamente, la sustitución de una pieza de código por otra que nosotros decidamos. Esto lo hacemos con el objetivo de testear únicamente el código de la funcionalidad y no incluir en el mismo llamadas a otras apis, a funciones o consultas a una base de datos.
 
-Jest incorpora un método específico para esta tarea llamanda mock().
+Jest incorpora un método específico para esta tarea llamado mock().
 
-Los mocks se suelen incluir al principio de los archivos de test y reciben como argumentos, en primer lugar, la ruta del archivo en el que se encuentran las funcionalidades que vamos a reemplazar y, en segundo lugar, un callback que devuelve un objeto en el que cada propiedad es el number de una funcionalidad a sustituir y que tiene como valor la función que se va a ejecutar en su lugar.
+Los mocks se suelen incluir al principio de los archivos de test y reciben como argumento la ruta del archivo en el que se encuentran las funcionalidades que vamos a reemplazar.
 
-Vamos a ver, a continuación, un ejemplo de mock para un servicio de backend:
+Seguidamente, importaremos las funcionalidades a sustituir para, después, llamarlas en el test. Estas funcionalidades la no se encuentran en su estado original, si no mockeadas. Esto quiere decir que contienen todos los métodos que nos van a permitir manipular su comportamiento.
+
+Vamos a ver, a continuación, el ejemplo de mock para un servicio de backend:
 
 Este servico customersService realiza una llamada a una función getCustomers() que hace una cosulta a una base de datos:
 
@@ -146,26 +148,24 @@ const customersService = async () => {
 };
 ```
 
-Para ejecutar un test unitario a este código lo más aconsejable es mockear getcustomers. Una de las posibilidades que tenemos para hacerlo es la siguiente:
+Para ejecutar un test unitario a este código lo más aconsejable es mockear getcustomers para que simule devolvernos una promesa resuelta. Una de las posibilidades que tenemos para hacerlo es la siguiente:
 
 ```js
-jest.mock("../database/queries", () => {
-  const testCustomer = {
-    name: "Luis",
-    vip: true,
-  };
-
-  return {
-    getCustomers: () => {
-      return [testCustomer];
-    },
-  };
-});
+jest.mock("../database/queries");
 
 const { customersService } = require("../services/customersServices");
 
+const { getCustomers } = require("../database/queries");
+
 describe("Services controllers testing", () => {
   test("Customers", async () => {
+    getCustomers.mockResolvedValue([
+      {
+        name: "Luis",
+        vip: true,
+      },
+    ]);
+
     const response = await customersService();
 
     expect(response[0].name).toEqual("Luis");
@@ -173,16 +173,6 @@ describe("Services controllers testing", () => {
   });
 });
 ```
-
-Detalles importantes a tener en cuenta:
-
-- Como ya hemos mencionado, el mock debe realizarse al principio del documento para que las funcionalidades que queremos sustituir queden reemplazadas de manera correcta.
-
-- El mock tiene su propio scope. Esto significa que si queremos utilizar un paquete dentro del mock, tendremos que hacer el require en su interior. Al mismo tiempo, también tenemos que saber que lo declarado dentro del mock no podrá ser llamado fuera.
-
-- Cuando indicamos en el primer argumento del mock la ruta que queremos testear debemos tener en cuenta que todo el contenido del archivo al que apuntamos va a ser mockeado. Por este motivo, es aconsejable, que todos los elementos "mockeables" se encuetren agrupados.
-
-- En la misma línea del punto anterior y, con el objetivo de facilitarmos el trabajo, es aconsejable abstraer ciertas partes de nuestro código. Un ejemplo de ello son las consultas a la base de datos.
 
 ## Coverage:
 
