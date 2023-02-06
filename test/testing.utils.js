@@ -15,6 +15,27 @@ const testCustomer = {
   vip: true,
 };
 
+const vipCustomers = [
+  {
+    name: "Luis",
+    vip: true,
+  },
+  {
+    name: "Javier",
+    vip: true,
+  },
+  {
+    name: "Marta",
+    vip: true,
+  },
+];
+
 const idParam = { id: "0" };
 
-module.exports = { emptyRequest, controllerResponse, testCustomer, idParam };
+module.exports = {
+  emptyRequest,
+  vipCustomers,
+  controllerResponse,
+  testCustomer,
+  idParam,
+};

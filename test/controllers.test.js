@@ -5,6 +5,7 @@ jest.mock("../utils/errorManagement");
 const {
   customersController,
   customerController,
+  lotteryController,
   createController,
   updateController,
   deleteController,
@@ -13,6 +14,7 @@ const {
 const {
   customersService,
   customerService,
+  lotteryService,
   createService,
   updateService,
   deleteService,
@@ -21,6 +23,7 @@ const {
 const {
   emptyRequest,
   controllerResponse,
+  vipCustomers,
   testCustomer,
   idParam,
 } = require("./testing.utils");
@@ -46,6 +49,24 @@ describe("Customer controllers info testing", () => {
       emptyRequest,
       controllerResponse
     );
+
+    expect(response).toBeUndefined();
+  });
+
+  test("Lottery", async () => {
+    lotteryService.mockResolvedValue(vipCustomers);
+
+    const response = await lotteryController(emptyRequest, controllerResponse);
+
+    expect(response).toBeUndefined();
+  });
+
+  test("Lottery error", async () => {
+    lotteryService.mockImplementationOnce(() => {
+      throw new Error("error");
+    });
+
+    const response = await lotteryController(emptyRequest, controllerResponse);
 
     expect(response).toBeUndefined();
   });

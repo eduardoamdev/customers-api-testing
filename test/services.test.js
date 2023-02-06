@@ -1,8 +1,10 @@
 jest.mock("../database/queries");
+jest.mock("../utils/chooseCustomer");
 
 const {
   customersService,
   customerService,
+  lotteryService,
   createService,
   updateService,
   deleteService,
@@ -11,12 +13,15 @@ const {
 const {
   getCustomers,
   getCustomer,
+  getVipCustomers,
   createCustomer,
   updateCustomer,
   deleteCustomer,
 } = require("../database/queries");
 
-const { testCustomer, customerId } = require("./testing.utils");
+const { chooseCustomer } = require("../utils/chooseCustomer");
+
+const { testCustomer, customerId, vipCustomers } = require("./testing.utils");
 
 describe("Services controllers testing", () => {
   test("Customers", async () => {
@@ -26,6 +31,15 @@ describe("Services controllers testing", () => {
 
     expect(response[0].name).toEqual("Luis");
     expect(response[0].vip).toEqual(true);
+  });
+
+  test("Lottery", async () => {
+    chooseCustomer.mockReturnValueOnce(0);
+    getVipCustomers.mockResolvedValue(vipCustomers);
+
+    const response = await lotteryService();
+
+    expect(response.vip).toEqual(true);
   });
 
   test("Customer", async () => {

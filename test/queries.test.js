@@ -3,6 +3,7 @@ jest.mock("../database/models/Customer");
 const {
   getCustomers,
   getCustomer,
+  getVipCustomers,
   createCustomer,
   updateCustomer,
   deleteCustomer,
@@ -10,13 +11,22 @@ const {
 
 const Customer = require("../database/models/Customer");
 
-const { testCustomer } = require("./testing.utils");
+const { testCustomer, vipCustomers } = require("./testing.utils");
 
 describe("Database queries test", () => {
   test("Get customers", async () => {
     Customer.find.mockResolvedValue([testCustomer]);
 
     const response = await getCustomers();
+
+    expect(response[0].name).toEqual("Luis");
+    expect(response[0].vip).toEqual(true);
+  });
+
+  test("Get vip customers", async () => {
+    Customer.find.mockResolvedValue(vipCustomers);
+
+    const response = await getVipCustomers();
 
     expect(response[0].name).toEqual("Luis");
     expect(response[0].vip).toEqual(true);

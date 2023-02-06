@@ -3,12 +3,15 @@ const router = express.Router();
 const {
   customersController,
   customerController,
+  lotteryController,
   createController,
   updateController,
   deleteController,
 } = require("../controllers/customersControllers");
 
 router.get("/", customersController);
+
+router.get("/lottery", lotteryController);
 
 router.get("/:id", customerController);
 

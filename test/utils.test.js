@@ -1,6 +1,7 @@
 const { inputChecker, outputChecker } = require("../utils/errorManagement");
+const { chooseCustomer } = require("../utils/chooseCustomer");
 
-const { testCustomer } = require("./testing.utils");
+const { testCustomer, vipCustomers } = require("./testing.utils");
 
 describe("Error management checker", () => {
   test("Input checker ok", () => {
@@ -25,5 +26,11 @@ describe("Error management checker", () => {
     expect(() => {
       outputChecker();
     }).toThrow(Error);
+  });
+
+  test("Choose customer", () => {
+    const response = chooseCustomer(vipCustomers);
+
+    expect(typeof response).toEqual("number");
   });
 });

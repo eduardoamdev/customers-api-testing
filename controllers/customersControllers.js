@@ -1,6 +1,7 @@
 const {
   customersService,
   customerService,
+  lotteryService,
   createService,
   updateService,
   deleteService,
@@ -23,6 +24,18 @@ const customersController = async (req, res) => {
 const customerController = async (req, res) => {
   try {
     const response = await customerService(req.params.id);
+
+    outputChecker(response);
+
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ severity: "ERROR", message: error.message });
+  }
+};
+
+const lotteryController = async (req, res) => {
+  try {
+    const response = await lotteryService();
 
     outputChecker(response);
 
@@ -71,6 +84,7 @@ const deleteController = async (req, res) => {
 module.exports = {
   customersController,
   customerController,
+  lotteryController,
   createController,
   updateController,
   deleteController,

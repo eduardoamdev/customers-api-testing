@@ -8,6 +8,10 @@ const getCustomer = async (id) => {
   return await Customer.findById(id);
 };
 
+const getVipCustomers = async () => {
+  return await Customer.find({ vip: true });
+};
+
 const createCustomer = async (customer) => {
   return await Customer.create(customer);
 };
@@ -23,6 +27,7 @@ const deleteCustomer = async (id) => {
 module.exports = {
   getCustomers,
   getCustomer,
+  getVipCustomers,
   createCustomer,
   updateCustomer,
   deleteCustomer,
