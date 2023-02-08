@@ -44,13 +44,13 @@ describe("Customers router test", () => {
     expect(response).toEqual("post");
   });
 
-  test("Get", () => {
+  test("Put", () => {
     const response = router.put();
 
     expect(response).toEqual("put");
   });
 
-  test("Get", () => {
+  test("Delete", () => {
     const response = router.delete();
 
     expect(response).toEqual("delete");
